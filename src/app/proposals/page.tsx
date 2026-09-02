@@ -1,22 +1,32 @@
-"use client"
+'use client'
 
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/table'
 import { useState } from 'react'
 
+interface Proposal {
+  id: number
+  system_size: number
+  annual_gen: number
+  monthly_savings: number
+  payback: number
+  created_at: string
+}
+
 export default function ProposalsPage() {
   const [loading, setLoading] = useState(false)
-  const [proposals, setProposals] = useState([])
+  const [proposals, setProposals] = useState<Proposal[]>([])
 
   const loadProposals = async () => {
     setLoading(true)
     try {
       const resp = await fetch('/api/proposals')
+      if (!resp.ok) throw new Error('Failed to fetch')
       const data = await resp.json()
       setProposals(data)
-    } catch (e) {
-      console.error(e)
+    } catch (error) {
+      console.error('Failed to load proposals:', error)
     } finally {
       setLoading(false)
     }
@@ -49,7 +59,7 @@ export default function ProposalsPage() {
                 </tr>
               </thead>
               <tbody>
-                {proposals.map((p: any) => (
+                {proposals.map((p: Proposal) => (
                   <tr key={p.id}>
                     <td>{p.system_size} kW</td>
                     <td>{p.annual_gen} kWh</td>

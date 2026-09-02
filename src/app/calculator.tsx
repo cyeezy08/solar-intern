@@ -32,7 +32,7 @@ export function SolarCalculator() {
     setResult(r as CalcResult)
   }
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setInputs({ ...inputs, [name]: Number(value) })
   }
