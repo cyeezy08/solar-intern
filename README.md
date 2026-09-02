@@ -55,6 +55,6 @@ npm run build
 
 This project is meant to be a realistic, honest portfolio app rather than a claim of existing internship sponsorship or production deployment. It is built to show relevant engineering skills and domain understanding for a solar software application.
 
-## Author
+## Project Purpose
 
-Chin Yi Zhe
+This project is intended as a portfolio and learning project for a solar software engineering application.
